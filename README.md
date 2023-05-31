@@ -1,7 +1,7 @@
 # Saints App Data
 
 <p align="left">
-<img src="https://img.shields.io/github/languages/top/christopherlam888/chrono-crawler.svg" >
+<img src="https://img.shields.io/github/languages/top/christopherlam888/saints-app-data.svg" >
 <a href="https://github.com/psf/black"><img src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"></a>
 </p>
