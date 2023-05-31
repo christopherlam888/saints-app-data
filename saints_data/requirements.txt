@@ -1,0 +1,4 @@
+beautifulsoup4==4.12.2
+cleantext==1.1.4
+requests==2.25.1
+tqdm==4.63.0
