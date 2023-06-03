@@ -2,15 +2,14 @@ from .saint import Saint
 
 import requests
 from bs4 import BeautifulSoup
-import re
 from cleantext import clean
+import language_tool_python
 
 base_url = "https://www.catholic.org"
 
 headers = {"Accept-Language": "en-US, en;q=0.5"}
 
-def add_spaces(text):
-    return re.sub(r'(?<=[^\s\.\?!])([\.\?!])(?=[^\s])', r'\1 ', text)
+tool = language_tool_python.LanguageTool('en-US')
 
 def get_pages(page):
     pages = []
@@ -42,8 +41,8 @@ def scrape_page(page):
             content = ""
             for part in content_parts:
                 content += part.text
-            content = add_spaces(content)
             content = clean(content, lower=False, no_line_breaks=True, no_urls=True)
+            content = tool.correct(content)
             break
         else:
             failed += 1
