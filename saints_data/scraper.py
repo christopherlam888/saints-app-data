@@ -10,6 +10,8 @@ base_url = "https://www.catholic.org"
 headers = {"Accept-Language": "en-US, en;q=0.5"}
 
 tool = language_tool_python.LanguageTool('en-US')
+is_bad_rule = lambda rule: rule.message == 'Possible spelling mistake found.' and len(rule.replacements) and rule.replacements[0][0].isupper()
+
 
 def get_pages(page):
     pages = []
@@ -42,7 +44,9 @@ def scrape_page(page):
             for part in content_parts:
                 content += part.text
             content = clean(content, lower=False, no_line_breaks=True, no_urls=True)
-            content = tool.correct(content)
+            matches = tool.check(content)
+            matches = [rule for rule in matches if not is_bad_rule(rule)]
+            content = language_tool_python.utils.correct(content, matches)
             break
         else:
             failed += 1
